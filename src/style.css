@@ -1,0 +1,348 @@
+:root{
+    --bc: #292929;
+}
+body {
+    font-family: Inter;
+    background-color: var(--bc);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+}
+
+.text{
+    all: unset;
+    color: #ffffff;
+}
+
+/* Страница регистрации */
+.circle_1 {
+    position: absolute;
+    top: -690px;
+    right: -80px;
+    width: 981px;
+    height: 981px;
+    border-radius: 50%;
+    background-color: #D35B05;
+}
+
+.circle_2 {
+    position: absolute;
+    top: 55%;
+    left: -90px;
+    transform: translateY(-50%);
+    width: 606px;
+    height: 606px;
+    border-radius: 50%;
+    background-color: #D35B05;
+}
+
+.circle_3 {
+    position: absolute;
+    top: 600px;
+    left: 950px;
+    width: 749px;
+    height: 749px;
+    border-radius: 50%;
+    background-color: #D35B05;
+}
+
+menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    padding-left: 35px;
+    padding-top: 67px;
+}
+
+.p_div {
+    font-size: 36px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.p2 {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+}
+
+.p1 {
+    cursor: pointer;
+}
+
+.div_form{
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+#role{
+    width: 100%;
+}
+
+.role_div{
+    margin-bottom: 15px;
+}
+
+.registration-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.registration-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #373737;
+    color: white;
+}
+
+.registration-form input:focus {
+    color: white;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+ 
+
+.registration-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #484747;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registration-form button:hover {
+    background-color: #635f5d;
+}
+
+/* Страница стендов */
+
+header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 96%;
+    height: 6%;
+    /* border: 1px solid #6e6e6e;
+    background-color: #353535;
+    border-radius: 15px; */
+    position:fixed; 
+    top: 12px;
+    left: 4vh;
+    font-size: 18px;
+}
+
+.header_el{
+    border: 1px solid #6e6e6e;
+    background-color: #353535;
+    border-radius: 15px;
+}
+
+.a1_div {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 0 15px;
+    width: auto;
+    height: 80%;
+    
+}
+
+a {
+    cursor: pointer;
+}
+
+.a1_div a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.a1_div a:hover {
+    color: #ffe5c5;
+}
+
+.a2_div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 15px;
+    width: auto;
+    height: 80%;
+}
+
+.a2_div a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.a2_div a:hover {
+    color: #fff6eb;
+}
+
+.header_img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.option_div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 20px;
+    color: white;
+    font-size: 14px;
+    top: 18%;
+    position: absolute;
+}
+
+select {
+    color: white;
+    background-color: #353535;
+    width: 245px;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+option {
+    color: white;
+    background-color: #353535;
+}
+
+.stends_fon_div {
+    width: 46%;
+    height: 68%;
+    background-color: #353535;
+    border-radius: 15px;
+    top: 30%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+.info_div{
+    top: 9%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+.info_div h1{
+    margin: 0;
+}
+.info_div p{
+    margin: 0;
+}
+.wrapper_stends{
+    overflow-y: scroll;
+    width: 95%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.wrapper_stends::-webkit-scrollbar {
+    width: 6px;               
+    border-radius: 20px;
+}
+.wrapper_stends::-webkit-scrollbar-track {
+    background: rgb(66, 66, 66);  
+    border-radius: 20px;     
+}
+.wrapper_stends::-webkit-scrollbar-thumb {
+    background-color: rgb(171, 171, 171);    
+    border-radius: 20px;        
+}
+
+.stend1 {
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 93%;
+    height: 20%;
+    background-color: #2c2c2c;
+    
+}
+
+.ch {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding-left: 5px;
+}
+
+.ch_div {
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.comp_img {
+    padding-top: 20px;
+    padding-left: 15px;
+    width: 74px;
+    height: 74px;  
+}
+
+.os_img .prc_img .mem_img {
+    width: 30px;
+    height: 30px;
+}
+
+.p_img_div {
+    display: flex;
+    flex-direction: column;
+}
+
+.inf_p_div {
+    display: flex;
+    align-items: center;
+}
+
+/* Страница брони */
+.stend2 {
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 93%;
+    height: 70%;
+    left: 30px;
+    right: 30px;
+    top: 20px;
+    position: absolute;
+}
