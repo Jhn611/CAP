@@ -135,9 +135,7 @@ export default {
                 <Card v-for="item in filtered_items" :key="item" :computer_info="item"/>
             </div> 
         </div>
-
 </main>
-
 </template>
 
 <style src="../style.css">
