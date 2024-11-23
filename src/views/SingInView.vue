@@ -1,4 +1,5 @@
 <script>
+import { register, login } from "../API.js";
 export default {
   data() {
     return {
@@ -58,7 +59,7 @@ export default {
       }
     },
 
-    handleSubmit() {
+    async handleSubmit() {
         this.validateEmail();
         this.validatePassword();
 
@@ -69,8 +70,18 @@ export default {
 
         if (!this.active) {
             this.resetForm();
+            const register_data = await register(this.form.email, this.form.password, this.form.role);
+            localStorage.setItem("token", register_data.token);
+            localStorage.setItem("role", register_data.userRole);
+            localStorage.setItem("email", register_data.userEmail);
+            localStorage.setItem("id", register_data.userId);
             this.$router.push("/"); 
         } else {
+            const login_data = await login(this.form.email, this.form.password);
+            localStorage.setItem("token", login_data.token);
+            localStorage.setItem("role", login_data.userRole);
+            localStorage.setItem("email", login_data.userEmail);
+            localStorage.setItem("id", login_data.userId);
             this.$router.push("/"); 
         }
     },
@@ -87,6 +98,10 @@ export default {
   mounted() {
     const activeFromStorage = localStorage.getItem("active");
     this.active = activeFromStorage === "true";
+    const token = localStorage.getItem("token");
+    if(token && token != ""){
+      this.$router.push("/"); 
+    }
   },
 };
 </script>

@@ -1,8 +1,17 @@
 <script >
 import Card from "../components/Card.vue";
+import { Typewriter } from "vue-typewriter";
+
 export default {
   data() {
     return {
+        space_text:"",
+        title: "Стенды",
+        description:"*Все стенды ниже доступны для бронирования, нажмите на стенд чтобы посмотреть подробную информацию и забронировать.",
+        typedTitle: "",
+        typedDescription: "",
+        showCursor1: true,
+        showCursor2: true,
         filter_items:{
             os:"",
             processor:"",
@@ -62,29 +71,52 @@ export default {
   },
   components:{
     Card,
+    Typewriter,
   },
   computed: {
     filtered_items(){
         let data = [];
+        let f = true;
         this.machine_info.forEach(element => {
             if(element.os === this.filter_items.os || element.os == "" || !this.filter_items.os){
                 if(element.processor === this.filter_items.processor || element.processor == "" || !this.filter_items.processor){
                     if(element.memory === this.filter_items.memory || element.memory == "" || !this.filter_items.memory){
                         data.push(element);
-                        //console.log("Im here!");
+                        f = false;
                     }
                 }
             }
         });
+        if(f){
+            this.space_text = "Стенды не найдены.";
+        } else{
+            this.space_text = "";
+        }
         return data;
     },
   },
   methods: {
-    
+    typeText(text, targetProperty, speed, callback) {
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          this[targetProperty] += text[index];
+          index++;
+        } else {
+          clearInterval(interval);
+          if (callback) callback(); // Вызываем callback после завершения
+        }
+      }, speed);
+    },
   },
   
   mounted() {
-    
+    this.typeText(this.title, "typedTitle", 100, () => {
+      this.showCursor1 = false; 
+      this.typeText(this.description, "typedDescription", 35, () => {
+        this.showCursor2 = false; 
+      });
+    });
   },
 };
 </script>
@@ -95,10 +127,10 @@ export default {
     <div class="circle_5"> </div>
     <div class="circle_6"> </div>
     <div class="circle_7"> </div>
-        <div class="info_div">
-            <h1>Стенды</h1>
-            <p>*Все стенды ниже доступны для бронирования, нажмите на стенд чтобы посмотреть подробную информацию и забронировать.</p>
-        </div>
+    <div class="info_div">
+        <h1>{{ typedTitle }}<span v-if="showCursor1" class="cursor">|</span></h1>
+        <p>{{ typedDescription }}<span v-if="showCursor2" class="cursor">|</span></p>
+    </div>
         <div class="option_div"> 
             <div class="OS_div"> 
                 <p> ОС </p>
@@ -133,6 +165,7 @@ export default {
         <div class="stends_fon_div">
             <div class="wrapper_stends">
                 <Card v-for="item in filtered_items" :key="item" :computer_info="item"/>
+                <p>{{ this.space_text }}</p>
             </div> 
         </div>
 </main>
