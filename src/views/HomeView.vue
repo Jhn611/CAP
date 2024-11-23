@@ -25,6 +25,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"512 MB",
                 status:"Свободен",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -32,6 +33,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"512 MB",
                 status:"Свободен",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -39,6 +41,7 @@ export default {
                 processor:"Baikal-T1",
                 memory:"512 MB",
                 status:"Свободен",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -46,6 +49,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"1 ГБ",
                 status:"Забронирован",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -53,6 +57,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"1 ГБ",
                 status:"Свободен",
+                id:"",
             },
             {
                 name:"Компьютер 1",
@@ -60,6 +65,7 @@ export default {
                 processor:"Baikal-T1",
                 memory:"512 MB",
                 status:"Свободен",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -67,6 +73,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"1 ГБ",
                 status:"Свободен",
+                id:"",
             }, 
             {
                 name:"Компьютер 1",
@@ -74,6 +81,7 @@ export default {
                 processor:"Baikal-M",
                 memory:"1 ГБ",
                 status:"Забронирован",
+                id:"",
             },
         ],
     };

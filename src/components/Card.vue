@@ -1,9 +1,14 @@
 <script >
+import { book } from "../API.js";
 export default {
   data() {
     return {
       bonus_info: false,
       date: null,
+      token:null,
+      ssh:null,
+      access: false,
+      load: false,
     };
   },
 
@@ -20,18 +25,34 @@ export default {
       this.bonus_info = true;
     },
     close(e) {
-      if (!this.$el.contains(e.target) && !e.target.closest('.pop-up') && !e.target.closest('.stend1')) { 
+      if (!this.$el.contains(e.target) && !e.target.closest('.pop-up') && !e.target.closest('.stend1') && !e.target.closest('.grey1_div')) { 
         this.bonus_info = false;
       }
     },
+    async booking(){
+      try{
+        this.load = true
+      const data = await book(this.computer_info.id, this.token);
+      if(data != "error"){
+        this.ssh = data.ssh;
+        this.access = true;
+      }
+      this.load = false;
+      }
+      catch{
+        this.load = false;
+      }
+      
+    }
   },
   
   mounted() {
-    document.addEventListener('click', this.close.bind(this))
+    document.addEventListener('click', this.close.bind(this));
+    this.token = localStorage.getItem('token');
   },
 
   beforeDestroy () {
-    document.removeEventListener('click',this.close)
+    document.removeEventListener('click',this.close);
   },
 };
 </script>
@@ -66,7 +87,14 @@ export default {
               </div>    
           </div>
           </div>
-          <div v-if="computer_info.status === 'Свободен'" class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
+          <div @click="booking" v-if="computer_info.status === 'Свободен' && !access && !load" class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
+          <img v-if="load" class="load_img" src="../imgs/Loader.svg">
+          <div class="" v-if="access">
+            <p>id стенда: {{ computer_info.id }}</p>
+            <p>ssh ключ: {{ this.token }}</p>
+            <p class="sub_text">нажмите чтобы скопировать и воспользуйтесь консолью</p>
+            <p class="sub_text">*После обновления страницы токен получить нельзя!</p>
+          </div>
   </div>
 </div>
 </template>

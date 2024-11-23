@@ -12,6 +12,8 @@ export async function register(email, password, role) {
         const data = await response.data; 
         if(data.userId){
             return login(email, password)
+        }else{
+            return "error";
         }
 
     } catch (error) {
@@ -31,6 +33,29 @@ export async function login(email, password) {
         const data = await response.data; 
         if(data.token){
             return data; 
+        }else{
+            return "error";
+        }
+    } catch (error) {
+        console.error('Ошибка при получении данных:', error.message);
+        throw error;  
+    }
+}
+
+export async function book(computerId, token) {
+    try {
+        const response = await axios.post(BASE_URL + '/api/book', {
+            params:{
+                "computerID": computerId,
+                "token": token,
+            }
+        });
+        const data = await response.data; 
+        if(data.ssh){
+            return data; 
+        }
+        else{
+            return "error";
         }
     } catch (error) {
         console.error('Ошибка при получении данных:', error.message);
