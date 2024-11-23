@@ -44,8 +44,8 @@ export default {
 <template>
   <header  v-if="$route.path === '/'">
     <div class="a1_div header_el"> 
-        <a> Стенды </a>
-        <a> Брони </a> 
+        <a :class="{unactive: $route.path != '/'}"> Стенды </a>
+        <a :class="{unactive: $route.path != '/bron'}" >  Брони </a> 
     </div>
     <div @click="redirect" class="a2_div header_el"> 
       <RouterLink to="/singin">{{ email }}</RouterLink>

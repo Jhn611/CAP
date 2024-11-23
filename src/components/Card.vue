@@ -37,7 +37,6 @@ export default {
 </script>
 
 <template>
-
 <div @click="card_click" class="stend1"> 
     <img class="comp_img" src="../imgs/Codesandbox.svg">
     <div class="ch_div"> 
@@ -46,10 +45,10 @@ export default {
             <img class="os_img" src="../imgs/Monitor.svg"> <p> {{ computer_info.os }} </p>
             <img class="prc_img" src="../imgs/Cpu.svg"> <p> {{ computer_info.processor }} </p>
             <img class="mem_img" src="../imgs/Disc.svg">  <p> {{ computer_info.memory }} </p>
+            <div :class="{red_status: computer_info.status === 'Забронирован'}" class="status_div"> <p class="p_grey1"> {{ computer_info.status }} </p> </div>
         </div>    
     </div>
 </div>
-  
 
 <div v-if="bonus_info" class="stend_info_bg"></div>
 <div v-if="bonus_info" class="pop-up">
@@ -67,10 +66,9 @@ export default {
               </div>    
           </div>
           </div>
-          <div class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
+          <div v-if="computer_info.status === 'Свободен'" class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
   </div>
 </div>
-
 </template>
 
 <style src="../style.css">

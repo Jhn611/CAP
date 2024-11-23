@@ -236,7 +236,7 @@ a {
 
 .a1_div a {
     text-decoration: none;
-    color: #ffffff;
+    
     transition: color 0.3s;
 }
 
@@ -357,12 +357,33 @@ option {
     height: 20%;
     background-color: #3b3b3b;
     box-shadow: 0px 4px 10px 0px rgba(9, 7, 5, 0.3);
+    cursor: pointer;
     animation: stend1 0.2s;
 }
+
 .stend1:hover{
     background-color: #454545;
 }
-
+.stend1:hover .comp_img{
+    animation: comp_img 0.5s;
+}
+@keyframes comp_img {
+    0%{
+        transform: rotate(0);
+    }
+    20%{
+        transform: rotate(-5deg);
+    }
+    70%{
+        transform: rotate(5deg);
+    }
+    95%{
+        transform: rotate(-1deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
 @keyframes stend1 {
     0%{
         transform: translate(-500px);
@@ -442,6 +463,7 @@ option {
     height: 30px;
 }
 
+
 .p_img_div {
     display: flex;
     flex-direction: column;
@@ -500,6 +522,20 @@ option {
     background-color: #3b3b3b;
     padding-left: 0;
     box-shadow: 7px 4px 4px rgb(38, 38, 38);
+}
+.status_div{
+    background-color: #b8704eca;
+    padding: 0 3px 0 3px;
+    width: auto;
+    height: 34px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 13px;
+}
+.red_status{
+    background-color: #6f483395;
 }
 
 .grey1_div {
@@ -560,3 +596,12 @@ option {
 .unset{
     all: unset;
 }
+
+.unactive{
+    color: #919191;
+}
+
+select option:hover {
+    background-color: #d37e1e;
+}
+

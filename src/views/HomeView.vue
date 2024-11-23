@@ -16,6 +16,7 @@ export default {
             os:"",
             processor:"",
             memory:"",
+            status:"",
         },
         machine_info:[
             {
@@ -23,48 +24,56 @@ export default {
                 os:"Astra Linux",
                 processor:"Baikal-M",
                 memory:"512 MB",
+                status:"Свободен",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Windows",
                 processor:"Baikal-M",
                 memory:"512 MB",
+                status:"Свободен",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-T1",
                 memory:"512 MB",
+                status:"Свободен",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-M",
                 memory:"1 ГБ",
+                status:"Забронирован",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-M",
                 memory:"1 ГБ",
+                status:"Свободен",
             },
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-T1",
                 memory:"512 MB",
+                status:"Свободен",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-M",
                 memory:"1 ГБ",
+                status:"Свободен",
             }, 
             {
                 name:"Компьютер 1",
                 os:"Astra Linux",
                 processor:"Baikal-M",
                 memory:"1 ГБ",
+                status:"Забронирован",
             },
         ],
     };
@@ -81,8 +90,10 @@ export default {
             if(element.os === this.filter_items.os || element.os == "" || !this.filter_items.os){
                 if(element.processor === this.filter_items.processor || element.processor == "" || !this.filter_items.processor){
                     if(element.memory === this.filter_items.memory || element.memory == "" || !this.filter_items.memory){
-                        data.push(element);
-                        f = false;
+                        if(element.status === this.filter_items.status || element.status == "" || !this.filter_items.status){
+                            data.push(element);
+                            f = false;
+                        }
                     }
                 }
             }
@@ -158,6 +169,14 @@ export default {
                     <option value="512 MB">512 MB</option>
                     <option value="1 ГБ">1 ГБ</option>
                     <option value="2 ГБ">2 ГБ</option>
+                </select>
+            </div>
+            <div class="status"> 
+                <p> Статус </p>
+                <select v-model="filter_items.status" id="status" name="status">
+                    <option value="">Не указано</option>
+                    <option value="Свободен">Свободен</option>
+                    <option value="Забронирован">Забронирован</option>
                 </select>
             </div>
         </div>
