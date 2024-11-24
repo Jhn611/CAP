@@ -89,7 +89,6 @@ export default {
   },
   components:{
     Card,
-    Typewriter,
   },
   computed: {
     filtered_items(){
