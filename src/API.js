@@ -2,13 +2,12 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 export async function register(email, password, role) {
     try {
-        const response = await axios.post(BASE_URL + '/api/auth/register', {
-            params:{
-                "user-email": email,
-                "user-password": password,
-                "user-role": role
-            }
-        });
+        params = {
+            "userEmail": email,
+            "userPassword": password,
+            "userRole": role
+        }
+        const response = await axios.post(BASE_URL + '/api/auth/register', params);
         const data = await response.data; 
         if('userId' in data){
             return login(email, password)
@@ -24,12 +23,11 @@ export async function register(email, password, role) {
 
 export async function login(email, password) {
     try {
-        const response = await axios.post(BASE_URL + '/api/auth/login', {
-            params:{
-                "user-email": email,
-                "user-password": password,
-            }
-        });
+        params = {
+            "userEmail": email,
+            "userPassword": password,
+        };
+        const response = await axios.post(BASE_URL + '/api/auth/login', params);
         const data = await response.data; 
         if('token' in data){
             return data; 
