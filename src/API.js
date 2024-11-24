@@ -10,7 +10,7 @@ export async function register(email, password, role) {
             }
         });
         const data = await response.data; 
-        if(data.userId){
+        if('userId' in data){
             return login(email, password)
         }else{
             return "error";
@@ -31,7 +31,7 @@ export async function login(email, password) {
             }
         });
         const data = await response.data; 
-        if(data.token){
+        if('token' in data){
             return data; 
         }else{
             return "error";
@@ -42,20 +42,79 @@ export async function login(email, password) {
     }
 }
 
-export async function book(computerId, token) {
+
+export async function get_all(token) {
     try {
-        const response = await axios.post(BASE_URL + '/api/book', {
-            params:{
-                "computerID": computerId,
-                "token": token,
-            }
-        });
+        const params = {
+            "token": token,
+        }
+        const response = await axios.post(BASE_URL + '/api/get_all', params);
         const data = await response.data; 
-        if(data.ssh){
+        return data; 
+          
+    } catch (error) {
+        console.error('Ошибка при получении данных:', error.message);
+        throw error;  
+    }
+}
+
+export async function get_computer(id, token) {
+    try {
+        const params = {
+            "id": id,
+            "token": token,
+        }
+        const response = await axios.post(BASE_URL + '/api/get_computer', params);
+        const data = await response.data;
+        if('ssh' in data){
             return data; 
         }
         else{
             return "error";
+        }
+        
+          
+    } catch (error) {
+        console.error('Ошибка при получении данных:', error.message);
+        throw error;  
+    }
+}
+
+export async function reserve_computer(id, token) {
+    try {
+        const params = {
+            "id": id,
+            "token": token,
+        }
+        const response = await axios.post(BASE_URL + '/api/reserve_computer', params);
+        const data = await response.data;
+        if('reserved' in data){
+            return true; 
+        }
+        else
+        {
+            return false;
+        }
+    } catch (error) {
+        console.error('Ошибка при получении данных:', error.message);
+        throw error;  
+    }
+}
+
+export async function relieve_computer(id, token) {
+    try {
+        const params = {
+            "id": id,
+            "token": token,
+        }
+        const response = await axios.post(BASE_URL + '/api/relieve_computer', params);
+        const data = await response.data;
+        if('reserved' in data){
+            return true; 
+        }
+        else
+        {
+            return false;
         }
     } catch (error) {
         console.error('Ошибка при получении данных:', error.message);

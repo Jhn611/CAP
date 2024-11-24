@@ -620,3 +620,35 @@ select option:hover {
     }
 }
 
+.copy:hover{
+    color: #d37e1e;
+}
+
+.copy_alert {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3903c;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 135px;
+}
+
+.copy_animate_on {
+    animation: 3s visible_on;
+}
+
+@keyframes visible_on {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+

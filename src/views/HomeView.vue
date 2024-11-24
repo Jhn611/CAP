@@ -1,6 +1,6 @@
 <script >
 import Card from "../components/Card.vue";
-import { Typewriter } from "vue-typewriter";
+import { get_all } from "../API.js";
 
 export default {
   data() {
@@ -12,6 +12,7 @@ export default {
         typedDescription: "",
         showCursor1: true,
         showCursor2: true,
+        token:null,
         filter_items:{
             os:"",
             processor:"",
@@ -130,6 +131,18 @@ export default {
   },
   
   mounted() {
+    this.token = localStorage.getItem("token");
+    if(this.token != null){
+        this.machine_info = get_all(this.token);
+        for(let i = 0; i < this.machine_info.length; i++){
+            if(this.machine_info[i].status == "true"){
+                this.machine_info[i].status = "Свободен";
+            }
+            else{
+                this.machine_info[i].status = "Забронирован";
+            }
+        }
+    }
     this.typeText(this.title, "typedTitle", 100, () => {
       this.showCursor1 = false; 
       this.typeText(this.description, "typedDescription", 35, () => {

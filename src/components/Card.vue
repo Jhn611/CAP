@@ -1,5 +1,5 @@
 <script >
-import { book } from "../API.js";
+import { get_computer, reserve_computer, relieve_computer } from "../API.js";
 export default {
   data() {
     return {
@@ -17,7 +17,22 @@ export default {
   },
 
   computed: {
-    
+    async check_access(){
+      try{
+        this.load = true
+        if(await get_computer(computer_info.id, token) != 'error'){
+          this.access = true;
+          this.load = false;
+          return true;
+        }
+        this.load = false;
+        return false;
+      }
+      catch{
+        this.load = false;
+        return false;
+      }
+    }
   },
 
   methods: {
@@ -29,20 +44,40 @@ export default {
         this.bonus_info = false;
       }
     },
+    copy(){
+      navigator.clipboard.writeText(this.ssh);
+      this.copy_flag = true;
+      setTimeout(() => {
+        this.copy_flag = null;
+      }, 2500);
+    },
     async booking(){
       try{
         this.load = true
-      const data = await book(this.computer_info.id, this.token);
-      if(data != "error"){
-        this.ssh = data.ssh;
-        this.access = true;
-      }
-      this.load = false;
+        if(await reserve_computer(this.computer_info.id, this.token) && this.token != null){
+          const data = await get_computer(this.computer_info.id, this.token);
+          if(data != "error"){
+            this.ssh = data.ssh;
+            this.access = true;
+          }
+        }
+        this.load = false;
       }
       catch{
         this.load = false;
       }
-      
+    },
+    async unbooking(){
+      try{
+        this.load = true
+        if(await relieve_computer(this.computer_info.id, this.token) && this.token != null){
+          this.access = false;
+        }
+        this.load = false;
+      }
+      catch{
+        this.load = false;
+      }
     }
   },
   
@@ -77,23 +112,32 @@ export default {
       <div class="comp_img_ch1_div">
           <img class="comp_img" src="../imgs/Codesandbox.svg">
           <div class="ch_div"> 
-              <p> <b> Компьютер 1 </b> </p>
+              <p> <b> {{ computer_info.name }} </b> </p>
               <div class="ch"> 
-                  <img class="os_img" src="../imgs/Monitor.svg"> <p> Astra Linux </p>
+                  <img class="os_img" src="../imgs/Monitor.svg"> <p> {{ computer_info.os }} </p>
                   <div> </div> <div> </div> <div> </div> <div> </div>
-                  <img class="prc_img" src="../imgs/Cpu.svg"> <p> Baikal </p>
+                  <img class="prc_img" src="../imgs/Cpu.svg"> <p> {{ computer_info.processor }} </p>
                   <div> </div> <div> </div> <div> </div> <div> </div>
-                  <img class="mem_img" src="../imgs/Disc.svg">  <p> 512 MB </p>
+                  <img class="mem_img" src="../imgs/Disc.svg">  <p> {{ computer_info.memory }} </p>
               </div>    
           </div>
           </div>
           <div @click="booking" v-if="computer_info.status === 'Свободен' && !access && !load" class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
+          <div @click="unbooking" v-if="computer_info.status === 'Забронирован' && check_access && access" class="grey1_div"> <p class="p_grey1"> Снять бронь </p> </div>
           <img v-if="load" class="load_img" src="../imgs/Loader.svg">
           <div class="" v-if="access">
-            <p>id стенда: {{ computer_info.id }}</p>
-            <p>ssh ключ: {{ this.token }}</p>
-            <p class="sub_text">нажмите чтобы скопировать и воспользуйтесь консолью</p>
-            <p class="sub_text">*После обновления страницы токен получить нельзя!</p>
+            <!-- <p>id стенда: {{ computer_info.id }}</p> -->
+            <p
+            :class="{
+              copy_animate_on: copy_flag,
+              copy_animate_off: copy_flag,
+            }"
+            class="copy_alert"
+            >
+              Скопированно!
+            </p>
+            <div>ssh ключ:<p class="copy" @click="copy()"> {{ ssh }}</p></div>
+            <p class="sub_text">нажмите чтобы скопировать и воспользуйтесь консолью для подключения</p>
           </div>
   </div>
 </div>
