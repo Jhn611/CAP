@@ -43,10 +43,11 @@ export async function login(email, password) {
 
 export async function get_all(token) {
     try {
-        const params = {
+        const response = await axios.get(BASE_URL + '/api/get_all', {
+            params: {
             "token": token,
-        }
-        const response = await axios.post(BASE_URL + '/api/get_all', params);
+            }
+        });
         const data = await response.data; 
         return data; 
           
@@ -58,11 +59,13 @@ export async function get_all(token) {
 
 export async function get_computer(id, token) {
     try {
-        const params = {
-            "id": id,
-            "token": token,
-        }
-        const response = await axios.post(BASE_URL + '/api/get_computer', params);
+
+        const response = await axios.get(BASE_URL + '/api/get_computer', {
+            params :{
+                "id": id,
+                "token": token,
+            }
+        });
         const data = await response.data;
         if('ssh' in data){
             return data; 
