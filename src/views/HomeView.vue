@@ -132,7 +132,7 @@ export default {
   mounted() {
     this.token = localStorage.getItem("token");
     if(this.token != null){
-        this.machine_info = get_all(this.token);
+        this.machine_info = [get_all(this.token)];
         for(let i = 0; i < this.machine_info.length; i++){
             if(this.machine_info[i].status == "true"){
                 this.machine_info[i].status = "Свободен";

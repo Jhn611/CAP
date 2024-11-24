@@ -125,7 +125,7 @@ export default {
           <div @click="booking" v-if="computer_info.status === 'Свободен' && !access && !load" class="grey1_div"> <p class="p_grey1"> Забронировать </p> </div>
           <div @click="unbooking" v-if="computer_info.status === 'Забронирован' && check_access && access" class="grey1_div"> <p class="p_grey1"> Снять бронь </p> </div>
           <img v-if="load" class="load_img" src="../imgs/Loader.svg">
-          <div class="" v-if="access">
+          <div class="text_div" v-if="access">
             <!-- <p>id стенда: {{ computer_info.id }}</p> -->
             <p
             :class="{
@@ -136,8 +136,8 @@ export default {
             >
               Скопированно!
             </p>
-            <div>ssh ключ:<p class="copy" @click="copy()"> {{ ssh }}</p></div>
-            <p class="sub_text">нажмите чтобы скопировать и воспользуйтесь консолью для подключения</p>
+            <p class="copy" @click="copy()"> {{ ssh }}</p>
+            <p class="sub_text">нажмите чтобы скопировать ssh ключ и воспользуйтесь консолью для подключения</p>
           </div>
   </div>
 </div>

@@ -561,7 +561,7 @@ option {
 .stend_info_bg{
     position: absolute;
     top:-100%;
-    width: 2000px;
+    width: 4000px;
     height: 2000px;
     z-index: 999;
     background-color: rgba(9, 7, 5, 0.3);
@@ -620,8 +620,14 @@ select option:hover {
     }
 }
 
+.copy{
+    cursor: pointer;
+}
 .copy:hover{
     color: #d37e1e;
+}
+.copy:active{
+    color: #945a16;
 }
 
 .copy_alert {
@@ -652,3 +658,21 @@ select option:hover {
     }
 }
 
+.sub_text{
+    font-size: 13px;
+}
+
+.text_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+}
+.text_div p{
+    margin: 0;
+    padding: 0;
+}
