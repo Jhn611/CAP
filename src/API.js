@@ -2,7 +2,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 export async function register(email, password, role) {
     try {
-        params = {
+        const params = {
             "userEmail": email,
             "userPassword": password,
             "userRole": role
@@ -23,7 +23,7 @@ export async function register(email, password, role) {
 
 export async function login(email, password) {
     try {
-        params = {
+        const params = {
             "userEmail": email,
             "userPassword": password,
         };
